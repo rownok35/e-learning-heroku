@@ -1,0 +1,106 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>{% block title_block %} Article {% endblock %}</title>
+    {% block css_block %} {% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav my-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}"><img src="/media/logo.png" alt="" width="50px"></a>
+
+            </li>
+
+            <li class="nav-item active my-auto">
+                <a class="nav-link" href="{% url 'ForumApp:forum_list' %}"> Forum </a>
+
+            </li>
+
+            {% if user.is_authenticated %}
+
+
+            <li class="nav-item active my-auto">
+                <a class="nav-link" href="{% url 'App_Login:profile' %}">Your Profile</a>
+            </li>
+            {% if user.is_teacher %}
+
+            <div class="nav-item dropdown my-auto">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Article
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'Article:create_article' %}">Write Article</a>
+                    <a class="dropdown-item" href="{% url 'Article:my_articles' %}">My Article</a>
+                </div>
+
+            </div>
+
+
+
+            {% endif %} {% if user.is_student %}
+
+            <div class="nav-item dropdown my-auto">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Problem
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'ForumApp:create_forum' %}">Write Problem</a>
+                    <a class="dropdown-item" href="{% url 'ForumApp:my-problems' %}">My Problem</a>
+                </div>
+
+            </div>
+
+
+
+            {% endif %} {% endif %}
+
+
+
+
+        </ul>
+
+
+        <ul class="navbar-nav ml-auto">
+
+            {% if user.is_authenticated %}
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'App_Login:logout' %}">Logout</a>
+            </li>
+            {% else %}
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'App_Login:login' %}">Create Account or Login</a>
+            </li>
+            {% endif %}
+
+
+        </ul>
+
+    </nav>
+    <div class="container" style="padding-top:20px">
+
+
+        {% block body_block %} {% endblock %}
+    </div>
+
+</body>
+
+</html>

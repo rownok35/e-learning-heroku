@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% load custom_filters %} {% load crispy_forms_tags %} {% block title_block %} {{user}} {% endblock %} {% block body_block %} {% for article in user.post_author.all %}
+<h3>{{article.article_title}}</h3>
+<h6>{{article.publish_date}}</h6>
+<div class="row">
+    <div class="col-sm-4">
+        <img src="/media/{{article.article_image}}" width="100%">
+    </div>
+    <div class="col-sm-8">
+        <p>{{article.article_content|range_filter|linebreaks}}</p>
+        <a href="{% url 'Article:article_details' slug=article.slug %}">Read More</a>
+    </div>
+</div>
+<a href="{% url 'Article:edit_article' pk=article.pk %}">Edit</a>
+<hr> {% endfor %}
+
+
+<br> {% endblock %}

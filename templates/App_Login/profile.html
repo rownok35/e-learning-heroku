@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block title_block %} Profile {% endblock %} {% block body_block %}
+
+<h2>Your Profile</h2>
+
+{% if user.teacher_user.profile_pic %}
+
+<img src="/media/{{user.teacher_user.profile_pic}}" alt="" class="rounded-circle" height="250 px" width="250px">
+<br>
+<br>
+<a href="{% url 'App_Login:change_pro_pic' %}" class="btn btn-info btn-sm">Change Profile Pic</a> {% elif user.student_user.profile_pic %}
+
+<img src="/media/{{user.student_user.profile_pic}}" alt="" class="rounded-circle" height="250 px" width="250px">
+<br>
+<br>
+<a href="{% url 'App_Login:change_pro_pic' %}" class="btn btn-info btn-sm">Change Profile Pic</a> {% else %}
+
+<img src="/media/profile_pics/a.png" height="250 px" width="250px" class="rounded-circle" alt="default-pic">
+<br>
+<br>
+<a href="{% url 'App_Login:add_pro_pic' %}" class="btn btn-info btn-sm">Change Profile Pic</a> {% endif %}
+
+
+
+<br>
+<p>Username: {{user.username}}</p>
+<p>Email: {{user.email}}</p>
+<p>Name: {{user.first_name}} {{user.last_name}} </p>
+{% if user.is_teacher %}
+<p>Profession: Teacher</p>
+{% else %}
+<p>Profession: Student</p>
+{% endif %}
+<br>
+<a href="{% url 'App_Login:user_change' %}" class="btn btn-warning btn-sm">Change Profile Info</a> {% endblock %}

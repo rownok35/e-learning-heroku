@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% load custom_filters2 %} {% block title_block %} Home {% endblock %} {% block body_block %}
+<h1>
+    {% for forum in Forum %}
+
+    <h3>{{forum.forum_title}}</h3>
+    <h6><i>{{forum.publish_date}} </i></h6>
+
+    <div class="row">
+
+
+        <div class="col-sm-4">
+            {% if forum.forum_image %}
+            <img src="/media/{{forum.forum_image}}" alt="{{forum.forum_title}}" title="{{forum.forum_title}}" width="100%"> {% endif %}
+        </div>
+        <div class="col-sm-8">
+            <p>{{forum.forum_content |range_filter2 |linebreaks}} <a href="{% url 'ForumApp:forum_details' slug=forum.slug %}">Read More</a></p>
+            <h6>Posted By: <a href="#">@{{forum.author}}</a></h6>
+            <h6>{{forum.forum_comment.count}} Comments</h6>
+        </div>
+
+
+    </div>
+    <hr> {% endfor %}
+</h1> {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load custom_filters2 %} {% load crispy_forms_tags %} {% block title_block %} {{user}} {% endblock %} {% block body_block %} {% for forum in user.forum_author.all %}
+<h3>{{forum.forum_title}}</h3>
+<h6>{{forum.publish_date}}</h6>
+<div class="row">
+    <div class="col-sm-4">
+        {% if forum.forum_image %}
+        <img src="/media/{{forum.forum_image}}" width="100%"> {% endif %}
+    </div>
+    <div class="col-sm-8">
+        <p>{{forum.forum_content|range_filter2|linebreaks}}</p>
+        <a href="{% url 'ForumApp:forum_details' slug=forum.slug %}">Read More</a>
+    </div>
+</div>
+<a href="{% url 'ForumApp:edit_forum' pk=forum.pk %}">Edit</a>
+<hr> {% endfor %}
+
+
+<br> {% endblock %}

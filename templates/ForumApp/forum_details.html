@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title_block %} {{forum.forum_title}} {% endblock %} {% block body_block %}
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <h2>{{forum.forum_title}}</h2>
+        <h4>Posted by: @{{forum.author}}</h4>
+        <i><h6>Published on: {{forum.publish_date}}</h6></i>
+        <i><h6>Updated on: {{forum.update_data}}</h6></i>
+        <h6>{{forum.forum_comment.count}} Comments</h6>
+    </div>
+    <div class="col-sm-6">
+        {% if forum.forum_image %}
+        <img src="/media/{{forum.forum_image}}" alt="" width="100%"> {% endif %}
+
+    </div>
+    <p>{{forum.forum_content | linebreaks}}</p>
+    <hr>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <hr>
+        <h5>Comments:</h5>
+        {% for comment in forum.forum_comment.all %}
+        <p><a href="#">@{{comment.user}}</a> {{comment.comment| linebreaks}}<br>
+            <h6>{{comment.comment_date}}</h6>
+        </p>
+        {% endfor %}
+    </div>
+    <div class="col-sm-6">
+        <form method="POST">
+            {{ comment_form|crispy }} {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-sm">Comment</button>
+        </form>
+    </div>
+
+</div>
+<br>
+<br> {% endblock %}
