@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title_block %} {{user}} {% endblock %} {% block body_block %}
+
+<!-- <br> -->
+{% if user.quiz_creator %}
+
+<h3>Click the Quiz Name to add question</h3>
+
+{% for quiz_obj in user.quiz_creator.all %}
+
+<span> Quiz Name: <a href="{% url 'Quiz:quiz_details' pk=quiz_obj.pk %}">{{quiz_obj.quizname}}</a></span>
+
+<h6>Publish Date: <i>{{quiz_obj.publish_date}}</i></h6>
+
+
+<hr> {% endfor %} {% else %}
+
+<h3>You haven't added any quiz</h3>
+
+{% endif %}
+
+
+<br> {% endblock %}

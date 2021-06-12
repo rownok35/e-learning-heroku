@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title_block %} Edit Question {% endblock %} {% block body_block %}
+<!-- <br>  -->
+{% if success_text %}
+<div class='alert alert-success'>{{ success_text }}</div>
+{% endif %}
+<a href="{% url 'Quiz:delete_question' pk=question_pk  %}" class="btn btn-danger btn-md" onclick="return confirm('Delete This Quiz?')">Delete Question</a>
+<form method="POST">
+    {{form|crispy }} {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-md">Update</button>
+</form>
+
+
+
+
+
+
+
+<br> {% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% load custom_filters %} {% block title_block %} Quiz List {% endblock %} {% block body_block %} {% for quiz_obj in quiz %}
+
+<span> Quiz Name: <a href="{% url 'Quiz:test' pk=quiz_obj.pk %}">{{quiz_obj.quizname}}</a></span>
+<p>Instructor: {{quiz_obj.author}}</p>
+
+
+<hr> {% endfor %} {% endblock %}

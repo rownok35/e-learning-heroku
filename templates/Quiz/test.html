@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block scripts %}
+<!-- <br>  -->
+<script src="{% static 'Quiz/quiz.js' %}" defer>
+    // let product_1 = document.querySelector('#test-form');
+    // console.log(product_1)
+</script>
+{% endblock scripts %} {% block title_block %} Test {% endblock %} {% block body_block %}
+<!-- <br>  -->
+
+<h5>Quiz Name: {{quiz_name}}</h5>
+
+<form id='quiz-form' method='POST'>
+    {% csrf_token %} {% for quiz_obj in quiz_name.quiz_name.all %}
+    <!-- <br> -->
+    <p>{{ forloop.counter }}. {{quiz_obj.question}}</p>
+    <input type="radio" class="ans" id="{{forloop.counter}}a1" name="{{quiz_obj.question}}" value="1">
+    <label for="{{forloop.counter}}a1">{{quiz_obj.answer_1}}</label><br>
+
+    <input type="radio" class="ans" id="{{forloop.counter}}a2" name="{{quiz_obj.question}}" value="2">
+    <label for="{{forloop.counter}}a2">{{quiz_obj.answer_2}}</label><br>
+
+    <input type="radio" class="ans" id="{{forloop.counter}}a3" name="{{quiz_obj.question}}" value="3">
+    <label for="{{forloop.counter}}a3">{{quiz_obj.answer_3}}</label><br>
+
+
+    <input type="radio" class="ans" id="{{forloop.counter}}a4" name="{{quiz_obj.question}}" value="4">
+    <label for="{{forloop.counter}}a4">{{quiz_obj.answer_4}}</label><br>
+
+    <br> {% endfor %}
+    <input type="submit" value="Submit" class="btn btn-info btn-md">
+
+</form>
+
+
+<div id="score-box"></div>
+<div id="result-box"></div>
+
+
+<br> {% endblock %}

@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> {% block scripts %} {% endblock scripts %}
     <title>{% block title_block %} Article {% endblock %}</title>
     {% block css_block %} {% endblock %}
 </head>
@@ -50,6 +50,20 @@
 
             </div>
 
+            <div class="nav-item dropdown my-auto">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Quiz
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'Quiz:Quiz_Form' %}">Create Quiz</a>
+                    <a class="dropdown-item" href="{% url 'Quiz:MyQuizzes' %}">My Quiz</a>
+                    <a class="dropdown-item" href="{% url 'Quiz:QuizList' %}">All Quizzes</a>
+                </div>
+
+            </div>
+
 
 
             {% endif %} {% if user.is_student %}
@@ -66,6 +80,13 @@
                 </div>
 
             </div>
+
+            <li class="nav-item active my-auto">
+
+                <a class="nav-link" href="{% url 'Quiz:QuizList' %}">Quizzes</a>
+
+            </li>
+
 
 
 
