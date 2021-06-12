@@ -17,9 +17,9 @@ MEDIA_DIR = BASE_DIR / 'media'
 SECRET_KEY = 'django-insecure-7b^)jhfdm&*8wup@2c9*y0%v#f#)c@s=^l)-rc40k#f=d=#a55'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["e-learning35.herokuapp.com", 'localhost']
 
 
 # Application definition
@@ -44,6 +44,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -124,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [STATIC_DIR, ]
 
 # MEDIA
