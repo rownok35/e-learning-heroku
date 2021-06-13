@@ -17,7 +17,7 @@ def signup_teacher(request):
             registered = True
 
     dict = {'form': form, 'registered': registered}
-    return render(request, 'App_login/signup.html', context=dict)
+    return render(request, 'App_Login/signup.html', context=dict)
 
 
 def signup_student(request):
@@ -30,7 +30,7 @@ def signup_student(request):
             registered = True
 
     dict = {'form': form, 'registered': registered}
-    return render(request, 'App_login/signup.html', context=dict)
+    return render(request, 'App_Login/signup.html', context=dict)
 
 
 def login_page(request):
