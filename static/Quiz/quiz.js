@@ -9,8 +9,8 @@ const scorebox = document.getElementById("score-box");
 const resultbox = document.getElementById("result-box");
 
 
-const sendData = (e) => {
-    e.preventDefault();
+const sendData = () => {
+    // e.preventDefault();
     const element = [...document.getElementsByClassName("ans")]
     const data = {}
     data['csrfmiddlewaretoken'] = csrf[0].value
@@ -69,5 +69,5 @@ const sendData = (e) => {
 
 quizForm.addEventListener('submit', e => {
     e.preventDefault();
-    sendData(e);
+    sendData();
 })
