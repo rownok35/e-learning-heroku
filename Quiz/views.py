@@ -116,9 +116,9 @@ def test(request, pk):
                          question.answer_1, question.answer_2, question.answer_3, question.answer_4, question.correct_answer]})
     # print(questions[0])
 
-    if request.method == 'POST':
-        data = request.POST['1']
-        print("test data", data)
+    # if request.method == 'POST':
+    #     data = request.POST['1']
+    #     print("test data", data)
 
     return render(request, 'Quiz/test.html', context={'quiz_name': quiz_name, 'data': questions})
 
