@@ -1,4 +1,5 @@
 const url = window.location.href
+console.log("hello!")
     // console.log(url)
     // console.log(`${url}/save/`)
 
@@ -8,7 +9,8 @@ const scorebox = document.getElementById("score-box");
 const resultbox = document.getElementById("result-box");
 
 
-const sendData = () => {
+const sendData = (e) => {
+    e.preventDefault();
     const element = [...document.getElementsByClassName("ans")]
     const data = {}
     data['csrfmiddlewaretoken'] = csrf[0].value
@@ -67,5 +69,5 @@ const sendData = () => {
 
 quizForm.addEventListener('submit', e => {
     e.preventDefault();
-    sendData();
+    sendData(e);
 })
